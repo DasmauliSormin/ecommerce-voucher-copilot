@@ -58,9 +58,7 @@ def ucs_voucher_optimization(
 
         # Cek kategori voucher yang sudah terpakai di state ini
         used_categories = [
-            v.category
-            for v in available_vouchers
-            if v.code in used_vouchers
+            v.category for v in available_vouchers if v.code in used_vouchers
         ]
 
         for voucher in available_vouchers:
@@ -92,9 +90,7 @@ def ucs_voucher_optimization(
 
 # 3. Eksekusi Pengujian Skenario BelanjaHemat
 if __name__ == "__main__":
-    print(
-        "[INFO] Validasi Stack AI: Seluruh pustaka utama berhasil dimuat!\n"
-    )
+    print("[INFO] Validasi Stack AI: Seluruh pustaka utama berhasil dimuat!\n")
 
     # Voucher dengan Penamaan Populer & Menarik
     belanja_vouchers = [
