@@ -96,7 +96,7 @@ if __name__ == "__main__":
     belanja_vouchers = [
         Voucher(
             code="PAYDAY_BIGSALE_20",
-            category="direct_discount",
+            category="direct_discount", 
             discount_type="percent",
             discount_value=20,
             min_purchase=200000,
