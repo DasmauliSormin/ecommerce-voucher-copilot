@@ -1,0 +1,42 @@
+[
+  {
+    "id": "V1",
+    "code": "PAYDAY_BIGSALE_20",
+    "category": "direct_discount",
+    "discount_type": "percent",
+    "discount_value": 20,
+    "min_purchase": 200000,
+    "max_discount": 50000,
+    "mutually_exclusive_with": ["direct_discount"]
+  },
+  {
+    "id": "V2",
+    "code": "MANTAP_DEAL_30K",
+    "category": "direct_discount",
+    "discount_type": "flat",
+    "discount_value": 30000,
+    "min_purchase": 150000,
+    "max_discount": 30000,
+    "mutually_exclusive_with": ["direct_discount"]
+  },
+  {
+    "id": "V3",
+    "code": "EXTRA_CASHBACK_10",
+    "category": "cashback",
+    "discount_type": "percent",
+    "discount_value": 10,
+    "min_purchase": 0,
+    "max_discount": 25000,
+    "mutually_exclusive_with": []
+  },
+  {
+    "id": "V4",
+    "code": "BEBAS_ONGKIR_SUPER",
+    "category": "free_shipping",
+    "discount_type": "flat",
+    "discount_value": 20000,
+    "min_purchase": 0,
+    "max_discount": 20000,
+    "mutually_exclusive_with": []
+  }
+]
