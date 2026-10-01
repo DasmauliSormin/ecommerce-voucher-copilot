@@ -101,3 +101,57 @@ class VoucherCSPSolver:
             self.vouchers[i] for i, val in best_assignment.items() if val == 1
         ]
         return selected_vouchers, best_benefit, execution_time
+
+    def main():
+    print("==================================================")
+    print("=== VOUCHERWISE - CSP SOLVER (MILESTONE 2) ===")
+    print("==================================================\n")
+
+    # Load dataset JSON lokal
+    try:
+        with open("data/vouchers_real.json", "r") as f:
+            vouchers_data = json.load(f)
+    except FileNotFoundError:
+        print("[ERROR] File 'data/vouchers_real.json' tidak ditemukan!")
+        return
+
+    # Input bebas total belanja dari user
+    try:
+        user_input = input("Masukkan Total Belanja Keranjang (Rp): ")
+        total_belanja = float(user_input)
+    except ValueError:
+        print("[ERROR] Masukkan angka yang valid!")
+        return
+
+    # Inisialisasi dan Jalankan Solver
+    solver = VoucherCSPSolver(vouchers_data, total_belanja)
+    selected_vouchers, total_benefit, exec_time = solver.solve_backtracking()
+
+    # Tampilkan Hasil
+    print("\n--------------------------------------------------")
+    print("MEMPROSES PROPAGASI BATASAN (CSP BACKTRACKING)...")
+    print(f"- Total Voucher Diuji       : {solver.num_vouchers}")
+    print(f"- Node Dieksplorasi         : {solver.nodes_explored}")
+    print(f"- Cabang Terpangkas (Pruned): {solver.pruned_count}")
+    print(f"- Waktu Komputasi          : {exec_time * 1000:.3f} ms")
+
+    print("\n==================================================")
+    print("HASIL REKOMENDASI KOMBINASI VOUCHER OPTIMAL:")
+    if not selected_vouchers or total_benefit == 0:
+        print("Tidak ada voucher yang memenuhi syarat/valid.")
+    else:
+        for idx, v in enumerate(selected_vouchers, 1):
+            benefit_val = solver.calculate_single_benefit(v)
+            print(
+                f"{idx}. {v['code']} ({v['category']}) -> Hemat Rp {benefit_val:,.2f}"
+            )
+
+        total_bayar = max(0.0, total_belanja - total_benefit)
+        print("--------------------------------------------------")
+        print(f"Total Penghematan : Rp {total_benefit:,.2f}")
+        print(f"Harga Akhir Bayar : Rp {total_bayar:,.2f}")
+    print("==================================================")
+
+
+if __name__ == "__main__":
+    main()
