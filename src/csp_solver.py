@@ -6,11 +6,7 @@ from typing import Dict, List, Tuple
 class VoucherCSPSolver:
 
     def __init__(self, vouchers_data: List[Dict], total_belanja: float):
-        """Inisialisasi variabel keputusan, domain, dan batasan CSP .
-
-        - Variabel: Setiap voucher i (V1, V2, dst)
-        - Domain: {1: AMBIL, 0: LEWATI}
-        """
+        """Inisialisasi variabel keputusan, domain, dan batasan CSP."""
         self.vouchers = vouchers_data
         self.total_belanja = total_belanja
         self.num_vouchers = len(vouchers_data)
@@ -33,7 +29,7 @@ class VoucherCSPSolver:
     def is_consistent(
         self, voucher_idx: int, current_assignment: Dict[int, int]
     ) -> bool:
-        """Fungsi Batasan (Constraint Checker) :
+        """Fungsi Batasan (Constraint Checker):
 
         1. Syarat Minimum Belanja
         2. Aturan Stacking / Mutual Exclusivity
@@ -59,7 +55,7 @@ class VoucherCSPSolver:
         return True
 
     def solve_backtracking(self) -> Tuple[List[Dict], float, float]:
-        """Menjalankan Backtracking Search dengan Propagasi Batasan (Forward Checking) ."""
+        """Menjalankan Backtracking Search dengan Propagasi Batasan."""
         best_assignment = {}
         best_benefit = -1.0
 
@@ -85,7 +81,7 @@ class VoucherCSPSolver:
                 backtrack(index + 1, current_assignment)
                 del current_assignment[index]
             else:
-                self.pruned_count += 1  # Cabang terpangkas oleh batasan!
+                self.pruned_count += 1  # Cabang terpangkas oleh batasan
 
             # Opsi 2: Coba LEWATI Voucher (Assignment = 0)
             current_assignment[index] = 0
@@ -102,7 +98,8 @@ class VoucherCSPSolver:
         ]
         return selected_vouchers, best_benefit, execution_time
 
-    def main():
+
+def main():
     print("==================================================")
     print("=== VOUCHERWISE - CSP SOLVER (MILESTONE 2) ===")
     print("==================================================\n")
