@@ -38,5 +38,25 @@
     "min_purchase": 0,
     "max_discount": 20000,
     "mutually_exclusive_with": []
+  },
+  {
+    "id": "V5",
+    "code": "FLASH_SALE_50K",
+    "category": "direct_discount",
+    "discount_type": "flat",
+    "discount_value": 50000,
+    "min_purchase": 300000,
+    "max_discount": 50000,
+    "mutually_exclusive_with": ["direct_discount"]
+  },
+  {
+    "id": "V6",
+    "code": "GOPAY_CASHBACK_15",
+    "category": "cashback",
+    "discount_type": "percent",
+    "discount_value": 15,
+    "min_purchase": 100000,
+    "max_discount": 30000,
+    "mutually_exclusive_with": []
   }
 ]
