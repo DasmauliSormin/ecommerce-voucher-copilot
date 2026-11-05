@@ -1,0 +1,47 @@
+[
+  {
+    "id": "Q1",
+    "type": "Literal",
+    "query": "Berapa batas maksimum diskon voucher platform reguler?",
+    "similarity_score": 0.7402898073196411,
+    "is_accepted": true,
+    "status": "PASSED",
+    "matched_source": "SOP_01_Syarat_Voucher_Platform.txt"
+  },
+  {
+    "id": "Q2",
+    "type": "Sinonim",
+    "query": "Apakah bisa gratis ongkir kalau kirim ke luar pulau?",
+    "similarity_score": 0.6531977653503418,
+    "is_accepted": true,
+    "status": "PASSED",
+    "matched_source": "SOP_04_Aturan_Metode_Pembayaran.txt"
+  },
+  {
+    "id": "Q3",
+    "type": "Ambigu",
+    "query": "Aturan penggunaan koin cashback",
+    "similarity_score": 0.7676374316215515,
+    "is_accepted": true,
+    "status": "PASSED",
+    "matched_source": "SOP_03_Mekanisme_Cashback.txt"
+  },
+  {
+    "id": "Q4",
+    "type": "OOD_1",
+    "query": "Bagaimana cara memasak rendang daging sapi?",
+    "similarity_score": 0.5525978803634644,
+    "is_accepted": false,
+    "status": "PASSED",
+    "matched_source": "SOP_11_Penanganan_Kendala_Transaksi.txt"
+  },
+  {
+    "id": "Q5",
+    "type": "OOD_2",
+    "query": "Berapa harga saham Apple hari ini di bursa?",
+    "similarity_score": 0.5107511878013611,
+    "is_accepted": false,
+    "status": "PASSED",
+    "matched_source": "SOP_10_Prosedur_Eksklusivitas_Promo.txt"
+  }
+]

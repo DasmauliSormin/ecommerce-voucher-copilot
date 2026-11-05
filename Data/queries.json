@@ -1,0 +1,32 @@
+[
+  {
+    "id": "Q1",
+    "type": "Literal",
+    "query": "Berapa batas maksimum diskon voucher platform reguler?",
+    "expected_source": "SOP_01_Syarat_Voucher_Platform.txt"
+  },
+  {
+    "id": "Q2",
+    "type": "Sinonim",
+    "query": "Apakah bisa gratis ongkir kalau kirim ke luar pulau?",
+    "expected_source": "SOP_02_Subsidi_Gratis_Ongkir.txt"
+  },
+  {
+    "id": "Q3",
+    "type": "Ambigu",
+    "query": "Aturan penggunaan koin cashback",
+    "expected_source": "SOP_03_Mekanisme_Cashback.txt"
+  },
+  {
+    "id": "Q4",
+    "type": "OOD_1",
+    "query": "Bagaimana cara memasak rendang daging sapi?",
+    "expected_source": "NONE"
+  },
+  {
+    "id": "Q5",
+    "type": "OOD_2",
+    "query": "Berapa harga saham Apple hari ini di bursa?",
+    "expected_source": "NONE"
+  }
+]
