@@ -1,0 +1,16 @@
+DOKUMEN REGULASI INTERNAL ENTERPRISE E-COMMERCE
+Nomor Registrasi: REG/ENT/ANL/2026/108
+Klasifikasi: Internal Executive Report
+Unit Penerbit: Departemen Analisis Data dan Kinerja Bisnis
+
+DOKUMEN STANDAR OPERASIONAL PROSEDUR (SOP)
+EVALUASI EFISIENSI DAN PERFORMANCE BENCHMARK PROMO PLATFORM
+
+BAB I: METRIK KINERJA PROMO ENTERPRISE
+Pasal 1
+Efisiensi promo diukur berdasarkan rasio penghematan pengguna terhadap alokasi anggaran subsidi platform (Redemption-to-Subsidy Ratio).
+
+BAB II: TOLOK UKUR WAKTU EKSEKUSI REKOMENDASI (COMPUTATION SPEED)
+Pasal 2
+1. Mesin pencari rekomendasi voucher (CSPSolver / RAG Agent) wajib mengembalikan hasil rekomendasi kombinasi promo dalam waktu kurang dari 2.000 milidetik (2 detik) untuk menjaga pengalaman belanja pengguna.
+2. Pengujian benchmark dilakukan berkala terhadap variasi skenario katalog dari skala kecil hingga stres tes skala besar.

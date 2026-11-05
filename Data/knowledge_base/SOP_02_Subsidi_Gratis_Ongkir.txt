@@ -1,0 +1,25 @@
+DOKUMEN REGULASI INTERNAL ENTERPRISE E-COMMERCE
+Nomor Registrasi: REG/ENT/LOG/2026/042
+Klasifikasi: Public Operational Guidelines
+Unit Penerbit: Divisi Manajemen Logistik dan Rantai Pasok (Supply Chain)
+
+DOKUMEN STANDAR OPERASIONAL PROSEDUR (SOP)
+MEKANISME DAN BATASAN SUBSIDI GRATIS ONGKOS KIRIM
+
+BAB I: KETENTUAN MITRA EXPEDITION AND COVERAGE AREA
+Pasal 1
+1. Program Subsidi Gratis Ongkos Kirim (Free Shipping) hanya berlaku pada transaksi barang yang dikirimkan menggunakan Logistik Mitra Resmi (Official Logistics Partners) yang terintegrasi API dengan platform (Reguler, Cargo, Instant, dan Sameday).
+2. Cakupan pengiriman dibatasi pada jarak maksimal 500 km dari titik pergudangan penjual (Merchant Origin Warehouse) menuju titik koordinat penerima.
+
+BAB II: STRUKTUR NILAI POTONGAN SUBSIDI
+Pasal 2
+1. Pengiriman Antar-Pulau (Inter-Island Shipping):
+   a. Transaksi dengan nilai belanja minimum Rp50.000,00 berhak menerima subsidi potongan ongkos kirim hingga maksimal Rp20.000,00.
+   b. Apabila total ongkos kirim melebihi Rp20.000,00, maka selisih sisa ongkos kirim ditanggung sepenuhnya oleh pembeli.
+2. Pengiriman Dalam Kota (Intra-City Shipping):
+   a. Pembeli berhak menerima subsidi ongkos kirim maksimal sebesar Rp10.000,00 tanpa dipersyaratkan minimum belanja.
+
+BAB III: KUOTA PENGGUNAAN DAN PERPANJANGAN
+Pasal 3
+1. Setiap akun pengguna yang terverifikasi (OTP Phone Verified) dialokasikan kuota maksimal 3 (tiga) kali penggunaan voucher gratis ongkir dalam periode 1 (satu) minggu kalender.
+2. Pembaruan kuota mingguan dilakukan secara otomatis oleh basis data sistem setiap hari Senin pukul 00.00 WIB. Kuota yang tidak terpakai pada minggu sebelumnya akan hangus dan tidak dapat diakumulasikan.

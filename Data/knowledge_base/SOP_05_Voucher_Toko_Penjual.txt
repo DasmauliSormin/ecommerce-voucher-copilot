@@ -1,0 +1,17 @@
+DOKUMEN REGULASI INTERNAL ENTERPRISE E-COMMERCE
+Nomor Registrasi: REG/ENT/MER/2026/021
+Klasifikasi: Merchant Policy Standard
+Unit Penerbit: Divisi Manajemen Penjual (Merchant Management)
+
+DOKUMEN STANDAR OPERASIONAL PROSEDUR (SOP)
+TATA CARA PENERBITAN VOUCHER DISKON OLEH PENJUAL (MERCHANT)
+
+BAB I: TANGGUNG JAWAB ANGGARAN VOUCHER TOKO
+Pasal 1
+1. Voucher Toko adalah potongan harga yang diterbitkan secara independen oleh penjual/merchant. Seluruh beban pengurang harga ditanggung penuh dari margin keuntungan penjual.
+2. Penjual berhak menentukan nilai diskon nominal, diskon persentase, serta minimum belanja produk toko milik penjual.
+
+BAB II: HIRARKI DAN EKSKLUSIVITAS PENERAPAN DISKON
+Pasal 2
+1. Potongan dari Voucher Toko selalu diaplikasikan PERTAMA KALI pada kalkulasi item sebelum voucher tingkat platform dihitung.
+2. Jika potongan Voucher Toko menyebabkan nilai akumulasi keranjang belanja berada di bawah ambang minimum belanja Voucher Platform, maka Voucher Platform otomatis dinyatakan gugur oleh sistem (failed constraint evaluation).

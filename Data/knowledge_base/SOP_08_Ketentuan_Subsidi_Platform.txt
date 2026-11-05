@@ -1,0 +1,16 @@
+DOKUMEN REGULASI INTERNAL ENTERPRISE E-COMMERCE
+Nomor Registrasi: REG/ENT/BUD/2026/012
+Klasifikasi: Executive Financial Guidelines
+Unit Penerbit: Direktorat Keuangan dan Perencanaan Strategis
+
+DOKUMEN STANDAR OPERASIONAL PROSEDUR (SOP)
+BATAS MAKSIMUM ANGGARAN SUBSIDI PLATFORM PER TRANSAKSI
+
+BAB I: ALOKASI SUBSIDI ANGGARAN HARIAN
+Pasal 1
+Total pemberian subsidi promo (Diskon Langsung + Cashback + Gratis Ongkir) dibatasi oleh plafon anggaran harian enterprise yang dialokasikan pada basis data pusat.
+
+BAB II: AMBANG BATAS GLOBAL SUBSIDI (GLOBAL CONSTRAINT G1)
+Pasal 2
+1. Total penggabungan benefit dari seluruh voucher platform yang ditanggung perusahaan dalam 1 (satu) kali checkout TIDAK BOLEH melebihi batas maksimum Rp100.000,00 (seratus ribu rupiah) per transaksi.
+2. Jika kombinasi voucher menghasilkan total potongan di atas Rp100.000,00, maka modul CSPSolver akan memangkas (capping) nilai potongan agar tetap berada pada angka maksimal Rp100.000,00.

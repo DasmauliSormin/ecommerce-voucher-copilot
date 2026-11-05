@@ -1,0 +1,22 @@
+DOKUMEN REGULASI INTERNAL ENTERPRISE E-COMMERCE
+Nomor Registrasi: REG/ENT/ACC/2026/115
+Klasifikasi: Internal Financial Standard
+Unit Penerbit: Departemen Keuangan dan Akuntansi Digital
+
+DOKUMEN STANDAR OPERASIONAL PROSEDUR (SOP)
+TATA CARA PENERBITAN DAN PENCAIRAN CASHBACK KOIN PLATFORM
+
+BAB I: BENTUK DAN EKUIVALENSI CASHBACK
+Pasal 1
+1. Seluruh pengembalian cashback atas transaksi yang menggunakan Voucher Cashback diterbitkan dalam bentuk instrumen Koin Platform (Platform Coins).
+2. Nilai konversi ekuivalensi Koin Platform diset secara tetap yaitu 1 Koin = Rp1,00 (satu rupiah). Koin ini tidak dapat ditarik menjadi uang tunai (non-withdrawable) namun dapat diguna-pakai untuk belanja.
+
+BAB II: PENYESUAIAN DAN SYARAT PENCAIRAN KOIN
+Pasal 2
+1. Koin Cashback akan dikreditkan secara otomatis ke dalam Dompet Digital Pengguna (User Wallet) maksimal 1x24 jam setelah transaksi dinyatakan SELESAI (pesanan diterima pembeli dan tidak ada pengajuan komplain retur).
+2. Nilai pencairan Koin Cashback dihitung dari persentase voucher dikalikan dengan total belanja bersih. Pada promo Flash Cashback 10%, batas maksimum koin yang dapat diperoleh adalah 25.000 Koin (setara Rp25.000,00).
+
+BAB III: PENGGUNAAN KOIN DAN MASA KEDALUWARSA
+Pasal 3
+1. Pengguna dapat memanfaatkan saldo Koin Platform untuk memotong total nilai pembayaran pada checkout berikutnya dengan batas maksimal penggunaan sebesar 25% dari total nilai transaksi baru.
+2. Masa berlaku Koin Platform adalah 90 (sembilan puluh) hari sejak koin diterima. Koin yang telah melewati batas kedaluwarsa akan dihapus secara otomatis dari sistem dan tidak dapat dipulihkan kembali.

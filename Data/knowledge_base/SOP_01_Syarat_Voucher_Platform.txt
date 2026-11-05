@@ -1,0 +1,28 @@
+DOKUMEN REGULASI INTERNAL ENTERPRISE E-COMMERCE
+Nomor Registrasi: REG/ENT/FIN/2026/089
+Klasifikasi: Operational SOP / Public Standard
+Unit Penerbit: Direktorat Keuangan dan Pemasaran Platform
+
+DOKUMEN STANDAR OPERASIONAL PROSEDUR (SOP)
+PENGELOLAAN DAN SKEMA PENGGUNAAN VOUCHER DISKON PLATFORM
+
+BAB I: KETENTUAN UMUM DAN DEFINISI
+Pasal 1
+1. Voucher Diskon Platform adalah instrumen pemotongan harga belanja yang diterbitkan secara resmi oleh pengelola platform e-commerce di mana beban biaya pengurangannya ditanggung 100% oleh alokasi anggaran pemasaran enterprise.
+2. Minimum Belanja Bersih (Net Purchase) adalah akumulasi nilai nominal harga barang di dalam keranjang belanja setelah dikurangi Diskon Penjual (Merchant Discount), namun sebelum ditambahkan biaya ongkos kirim, biaya penanganan (handling fee), dan asuransi pengiriman.
+
+BAB II: SKEMA MINIMUM BELANJA DAN BATAS MAKSIMUM BENEFIT
+Pasal 2
+1. Voucher Diskon Platform Kategori Persentase (misalnya Promo Flash Sale 20%) wajib menerapkan batasan Minimum Belanja Bersih sebesar Rp200.000,00 (dua ratus ribu rupiah).
+2. Nilai batas maksimum diskon (cap benefit) untuk voucher promo reguler diset pada nominal Rp50.000,00 (lima puluh ribu rupiah) per transaksi untuk satu ID Pengguna.
+3. Untuk promo tematik (misalnya Double Date Sale 11.11 atau Payday Sale), batas maksimum diskon disesuaikan secara dinamis berdasarkan keputusan Direksi Pemasaran dengan nilai hingga Rp150.000,00.
+
+BAB III: ATURAN PENUMPUKAN VOUCHER (STACKING RULES)
+Pasal 3
+1. Voucher Diskon Platform menerapkan sifat saling mengakhiri (Mutually Exclusive) terhadap Voucher Diskon Toko tipe persentase utama. Pengguna dilarang menggunakan dua voucher diskon langsung (direct discount) secara bersamaan pada satu barang yang sama.
+2. Pengguna secara sah diperbolehkan menggabungkan (stacking) 1 (satu) Voucher Diskon Platform dengan 1 (satu) Voucher Gratis Ongkir dan 1 (satu) Voucher Cashback Platform dalam 1 (satu) transaksi checkout yang sama, selama batasan subsidi global tidak terlampaui.
+
+BAB IV: KETENTUAN MASA BERLAKU DAN KLAIM
+Pasal 4
+1. Setiap voucher platform memiliki masa berlaku spesifik yang tertera pada metadata voucher (waktu mulai dan waktu kedaluwarsa).
+2. Klaim voucher tidak menjamin alokasi penggunaan jika kuota harian penggunaan voucher telah habis (first-come, first-served basis).

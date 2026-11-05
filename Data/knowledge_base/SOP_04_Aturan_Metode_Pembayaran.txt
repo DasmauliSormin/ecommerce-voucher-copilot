@@ -1,0 +1,17 @@
+DOKUMEN REGULASI INTERNAL ENTERPRISE E-COMMERCE
+Nomor Registrasi: REG/ENT/PAY/2026/054
+Klasifikasi: Public Operational Guidelines
+Unit Penerbit: Departemen Sistem Pembayaran Digital
+
+DOKUMEN STANDAR OPERASIONAL PROSEDUR (SOP)
+INTEGRASI METODE PEMBAYARAN DAN PROMO BANK KEMITRAAN
+
+BAB I: METODE PEMBAYARAN TERINTEGRASI
+Pasal 1
+Platform mendukung metode transaksi resmi meliputi E-Wallet (GoPay, OVO, DANA), Virtual Account Bank (VA Bank Central, VA Mandiri, VA BNI), serta Cash on Delivery (COD).
+
+BAB II: ATURAN SYARAT PEMBAYARAN KHUSUS (PAYMENT RESTRICTIONS)
+Pasal 2
+1. Voucher promo mitra pembayaran (misalnya Diskon Ekstra GoPay 15% atau Promo Kartu Kredit BNI) HANYA sah apabila pengguna memilih metode pembayaran yang sesuai pada saat finalisasi checkout.
+2. Apabila pengguna mengubah metode pembayaran di halaman konfirmasi akhir, maka voucher promo mitra otomatis dibatalkan oleh sistem solver (invalidated).
+3. Untuk metode Cash on Delivery (COD), penggunaan voucher promo platform dilarang apabila total nilai transaksi melebihi Rp1.000.000,00 (satu juta rupiah) demi menjaga keamanan transaksi kurir.

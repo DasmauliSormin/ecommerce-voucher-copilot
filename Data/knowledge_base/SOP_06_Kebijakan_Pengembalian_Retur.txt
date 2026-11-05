@@ -1,0 +1,17 @@
+DOKUMEN REGULASI INTERNAL ENTERPRISE E-COMMERCE
+Nomor Registrasi: REG/ENT/CS/2026/077
+Klasifikasi: Customer Service & Return Policy
+Unit Penerbit: Divisi Layanan Pelanggan dan Resolusi Konflik
+
+DOKUMEN STANDAR OPERASIONAL PROSEDUR (SOP)
+PROSEDUR PENGEMBALIAN DANA (REFUND) ATAS TRANSAKSI BER-VOUCHER
+
+BAB I: KALKULASI NOMINAL REFUND
+Pasal 1
+1. Apabila transaksi retur atau pembatalan pesanan disetujui, dana tunai yang dikembalikan kepada pembeli adalah sejumlah nilai bersih yang secara aktual dibayarkan oleh pembeli (setelah dipotong seluruh voucher).
+2. Komponen biaya subsidi platform dan potongan harga voucher tidak dapat dicairkan kembali menjadi uang tunai.
+
+BAB II: KETENTUAN HAK KLAIM VOUCHER Ulang
+Pasal 2
+1. Voucher platform, cashback, maupun gratis ongkir yang telah terpakai pada transaksi yang dibatalkan oleh pembeli TIDAK DAPAT dikembalikan atau diaktifkan ulang.
+2. Pengecualian berlaku jika pembatalan transaksi dilakukan secara otomatis oleh sistem akibat kesalahan atau kelalaian penjual (misalnya penjual tidak mengirim barang hingga batas waktu habis).

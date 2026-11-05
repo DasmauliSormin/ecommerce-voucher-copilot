@@ -1,0 +1,16 @@
+DOKUMEN REGULASI INTERNAL ENTERPRISE E-COMMERCE
+Nomor Registrasi: REG/ENT/OPS/2026/019
+Klasifikasi: Internal Operations Standard
+Unit Penerbit: Divisi Operasional dan Sistem Pendukung
+
+DOKUMEN STANDAR OPERASIONAL PROSEDUR (SOP)
+PENANGANAN KENDALA TEKNIS DAN GAGAL CHECKOUT PROMO
+
+BAB I: INDIKASI GAGAL CHECKOUT AKIBAT BATASAN
+Pasal 1
+Gagal checkout promo terjadi ketika sistem mengidentifikasi pelanggaran satu atau lebih batasan bisnis (Constraints U1-U6 atau B1-B4) pada keranjang belanja pengguna.
+
+BAB II: PROSEDUR UMPAN BALIK EXPLAINABILITY
+Pasal 2
+1. Sistem wajib menyediakan pesan penjelas transparan melalui modul `explain()` kepada pengguna yang menjelaskan alasan mendasar mengapa voucher tidak dapat dipasang.
+2. Contoh umpan balik resmi: "Voucher Diskon 20% tidak dapat digunakan karena nilai belanja keranjang (Rp150.000,00) kurang dari batas minimum Rp200.000,00."

@@ -1,0 +1,16 @@
+DOKUMEN REGULASI INTERNAL ENTERPRISE E-COMMERCE
+Nomor Registrasi: REG/ENT/SEC/2026/099
+Klasifikasi: Confidential Security Policy
+Unit Penerbit: Divisi Keamanan Siber dan Deteksi Fraud (Fraud & Risk Control)
+
+DOKUMEN STANDAR OPERASIONAL PROSEDUR (SOP)
+SISTEM DETEKSI FRAUD DAN PENYALAHGUNAAN VOUCHER PROMO
+
+BAB I: INDIKASI PELANGGARAN DAN KEGIATAN ANOMALI
+Pasal 1
+Penyalahgunaan voucher promo mencakup penggunaan akun ganda (multi-account creation) pada satu ID perangkat fisik, manipulasi alamat IP, penggunaan skrip otomatis (botting), serta transaksi fiktif (wash trading).
+
+BAB II: TINDAKAN PEMBATALAN OTOMATIS (SECURITY ACTUATOR)
+Pasal 2
+1. Mesin AI Security secara otomatis akan memblokir dan menggugurkan penukaran voucher jika mendeteksi ID Perangkat atau Nomor Telepon yang sama mencoba mengklaim voucher kuota terbatas lebih dari 1 kali dalam kurun waktu 24 jam.
+2. Akun yang terindikasi melanggar akan dimasukkan ke dalam daftar hitam (blacklist) dan tidak dapat memicu promo platform dalam jangka waktu 30 hari.

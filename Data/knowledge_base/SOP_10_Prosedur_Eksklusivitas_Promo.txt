@@ -1,0 +1,16 @@
+DOKUMEN REGULASI INTERNAL ENTERPRISE E-COMMERCE
+Nomor Registrasi: REG/ENT/EVT/2026/066
+Klasifikasi: Public Operational Guidelines
+Unit Penerbit: Divisi Pengelola Event dan Campaign Platform
+
+DOKUMEN STANDAR OPERASIONAL PROSEDUR (SOP)
+ATURAN EKSKLUSIVITAS PROMO EVENT FLASH SALE
+
+BAB I: KONDISI KETENTUAN PROMO FLASH SALE
+Pasal 1
+Produk barang yang didaftarkan oleh penjual ke dalam program Flash Sale Platform otomatis mendapatkan potongan harga langsung di tingkat katalog.
+
+BAB II: INTERAKSI VOUCHER TERHADAP FLASH SALE
+Pasal 2
+1. Produk Flash Sale TIDAK DAPAT digabungkan dengan Voucher Toko tipe Potongan Nominal.
+2. Solver optimasi secara otomatis memprioritaskan diskon Flash Sale dibanding voucher promo toko reguler demi menjamin harga terendah bagi pelanggan di halaman checkout.

@@ -1,0 +1,17 @@
+DOKUMEN REGULASI INTERNAL ENTERPRISE E-COMMERCE
+Nomor Registrasi: REG/ENT/USR/2026/033
+Klasifikasi: Public Marketing Policy
+Unit Penerbit: Divisi CRM dan Retensi Pengguna
+
+DOKUMEN STANDAR OPERASIONAL PROSEDUR (SOP)
+KLASIFIKASI SEGMEN PENGGUNA DAN HAK AKSES PROMO VOUCHER
+
+BAB I: KATEGORISASI SEGMEN PENGGUNA
+Pasal 1
+1. Pengguna Baru (New User): Pengguna yang terdaftar dalam kurun 7 hari dan belum pernah melakukan transaksi checkout sukses.
+2. Pengguna Setia (Loyal/VIP User): Pengguna yang telah menyelesaikan minimal 5 transaksi sukses dalam 30 hari terakhir.
+
+BAB II: ATURAN HAK AKSES VOUCHER SEGMEN
+Pasal 2
+1. Voucher promo tipe "Welcome Deal 50%" khusus dialokasikan untuk Pengguna Baru tanpa disyaratkan minimum belanja.
+2. Sistem solver akan memverifikasi variabel segmentasi pengguna (`user_segment`); jika pengguna lama mencoba menggunakan voucher Pengguna Baru, maka sistem akan menolak transaksi (Evaluasi Batasan Unary U3 gagal).
