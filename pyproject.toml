@@ -35,3 +35,10 @@ ecommerce-voucher-copilot = "ecommerce_voucher_copilot:main"
 [build-system]
 requires = ["uv_build>=0.12.10,<0.13.0"]
 build-backend = "uv_build"
+
+[tool.pytest.ini_options]
+pythonpath = [
+    "src",
+    "src/ecommerce_voucher_copilot/knowledge_base"
+]
+testpaths = ["tests"]

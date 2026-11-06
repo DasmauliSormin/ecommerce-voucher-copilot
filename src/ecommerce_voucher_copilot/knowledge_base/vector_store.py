@@ -10,13 +10,17 @@ from typing import Any
 
 import chromadb
 
-from .chunker import Chunk
-from .config import CHROMA_DIR, CONSTRAINT_CODES, USE_CONTEXT_HEADER
-from .embedder import Embedder
+try:
+    from .chunker import Chunk
+    from .config import CHROMA_DIR, CONSTRAINT_CODES, USE_CONTEXT_HEADER
+    from .embedder import Embedder
+except (ImportError, ValueError):
+    from chunker import Chunk
+    from config import CHROMA_DIR, CONSTRAINT_CODES, USE_CONTEXT_HEADER
+    from embedder import Embedder
 
 logger = logging.getLogger(__name__)
 
-# Field metadata wajib di setiap chunk (dipakai juga oleh unit test).
 REQUIRED_METADATA = (
     "doc_id",
     "judul",
@@ -38,9 +42,10 @@ REQUIRED_METADATA = (
 )
 
 
-def get_client(path: Path = CHROMA_DIR) -> chromadb.api.ClientAPI:
-    path.mkdir(parents=True, exist_ok=True)
-    return chromadb.PersistentClient(path=str(path))
+def get_client(path: Path | str = CHROMA_DIR) -> chromadb.api.ClientAPI:
+    path_obj = Path(path) if isinstance(path, str) else path
+    path_obj.mkdir(parents=True, exist_ok=True)
+    return chromadb.PersistentClient(path=str(path_obj))
 
 
 def get_collection(
@@ -48,7 +53,6 @@ def get_collection(
     name: str,
     extra_metadata: dict[str, Any] | None = None,
 ):
-    """Collection dengan ruang jarak cosine. Embedding selalu kita suplai sendiri."""
     meta = {"hnsw:space": "cosine"}
     meta.update(extra_metadata or {})
     return client.get_or_create_collection(
@@ -57,7 +61,6 @@ def get_collection(
 
 
 def parse_codes(raw: str) -> list[str]:
-    """'B3, G3' / 'B3;G3' -> ['B3', 'G3'] (hanya kode yang valid)."""
     parts = [p.strip().upper() for p in raw.replace(";", ",").split(",") if p.strip()]
     unknown = [p for p in parts if p not in CONSTRAINT_CODES]
     if unknown:
@@ -66,17 +69,14 @@ def parse_codes(raw: str) -> list[str]:
 
 
 def content_hash(embed_text: str) -> str:
-    """Hash dari teks yang di-embed: jika judul/section/isi berubah, ID ikut berubah."""
     return hashlib.sha1(embed_text.encode("utf-8")).hexdigest()[:12]
 
 
 def chunk_id(doc_id: str, index: int, digest: str) -> str:
-    """ID deterministik: konten sama -> ID sama -> upsert tidak menduplikasi."""
     return f"{doc_id}::{index:04d}::{digest}"
 
 
 def embedding_text(chunk: Chunk, title: str) -> str:
-    """Teks yang di-embed: diberi konteks judul & section (bukan teks yang ditampilkan)."""
     if not USE_CONTEXT_HEADER:
         return chunk.text
     return f"{title} | {chunk.section_path}\n{chunk.text}"
@@ -96,7 +96,6 @@ def prepare_chunks(
     token_counts: list[int],
     max_seq_length: int,
 ) -> list[PreparedChunk]:
-    """Bangun ID, teks embedding, dan metadata lengkap untuk satu dokumen."""
     codes = parse_codes(doc_meta.get("kode_batasan_terkait", ""))
     title = doc_meta.get("judul", doc_meta["doc_id"])
     prepared = []
@@ -112,8 +111,6 @@ def prepare_chunks(
             "departemen": doc_meta.get("departemen", ""),
             "jenis_dokumen": doc_meta.get("jenis_dokumen", ""),
             "kategori_voucher": doc_meta.get("kategori_voucher", "UMUM") or "UMUM",
-            # ChromaDB hanya menerima str/int/float/bool: list disimpan sebagai
-            # string untuk ditampilkan + satu field boolean per kode untuk filter.
             "kode_batasan_terkait": ",".join(codes),
             "section_path": chunk.section_path,
             "chunk_index": chunk.chunk_index,
@@ -149,12 +146,6 @@ def upsert_document(
     prepared: list[PreparedChunk],
     batch_size: int = 256,
 ) -> dict[str, int]:
-    """Ingestion idempoten untuk satu dokumen.
-
-    1. Hapus chunk lama milik doc_id yang tidak ada lagi (dokumen direvisi).
-    2. Embed hanya chunk yang belum ada (hemat waktu saat dijalankan ulang).
-    3. Upsert dengan ID deterministik.
-    """
     new_ids = {p.id for p in prepared}
     old_ids = _existing_ids(collection, where={"doc_id": doc_id})
     stale = sorted(old_ids - new_ids)
@@ -172,8 +163,6 @@ def upsert_document(
             metadatas=[p.metadata for p in batch],
         )
 
-    # Chunk yang isinya sama tetap diperbarui metadatanya (misal catalog.csv
-    # direvisi), tanpa menghitung ulang embedding.
     kept = [p for p in prepared if p.id in old_ids]
     for start in range(0, len(kept), batch_size):
         batch = kept[start : start + batch_size]
@@ -188,7 +177,6 @@ def upsert_document(
 
 
 def prune_missing_documents(collection, keep_doc_ids: set[str]) -> int:
-    """Hapus chunk milik dokumen yang sudah tidak ada di korpus."""
     data = collection.get(include=["metadatas"])
     orphan = [
         i
@@ -218,38 +206,83 @@ class IndexReport:
 def index_corpus(
     docs, embedder: Embedder, size: int, overlap: int, collection
 ) -> IndexReport:
-    """Chunk -> hitung token -> embed -> upsert idempoten, untuk seluruh korpus.
-
-    `docs` adalah RawDocument yang teksnya SUDAH dibersihkan (cleaner.clean_text).
-    """
-    from .chunker import chunk_document  # impor lokal agar modul ringan
+    try:
+        from .chunker import chunk_document
+    except (ImportError, ValueError):
+        from chunker import chunk_document
 
     totals = {"ditambah": 0, "dihapus": 0, "tetap": 0}
     tokens: list[int] = []
     words: list[int] = []
     n_word_split = 0
+    keep_doc_ids: set[str] = set()
+
     for doc in docs:
-        title = doc.meta.get("judul", doc.doc_id)
+        if isinstance(doc, dict):
+            doc_id = (
+                doc.get("doc_id")
+                or doc.get("id")
+                or doc.get("metadata", {}).get("doc_id", "")
+            )
+            text = (
+                doc.get("text")
+                or doc.get("content")
+                or doc.get("body")
+                or doc.get("isi")
+                or doc.get("raw_text")
+                or ""
+            )
+            source_file = doc.get("source_file") or doc.get("file_sumber") or ""
+            meta_dict = dict(doc.get("meta") or doc.get("metadata") or {})
+        else:
+            doc_id = getattr(doc, "doc_id", getattr(doc, "id", ""))
+            text = getattr(
+                doc,
+                "text",
+                getattr(
+                    doc,
+                    "content",
+                    getattr(doc, "body", getattr(doc, "isi", getattr(doc, "raw_text", ""))),
+                ),
+            )
+            source_file = getattr(
+                doc, "source_file", getattr(doc, "file_sumber", "")
+            )
+            meta_dict = dict(getattr(doc, "meta", getattr(doc, "metadata", {})))
+
+        if not doc_id:
+            doc_id = meta_dict.get("doc_id", "DOC_UNKNOWN")
+
+        # Jika teks masih kosong, coba ambil langsung representasi string objek jika ada
+        if not text and not isinstance(doc, dict):
+            text = str(doc)
+
+        keep_doc_ids.add(doc_id)
+        title = meta_dict.get("judul", doc_id)
+
         chunks = chunk_document(
-            doc.text, size, overlap, title=title, allow_plain_headings=True
+            text, size, overlap, title=title, allow_plain_headings=True
         )
         if not chunks:
-            logger.warning("Dokumen %s tidak menghasilkan chunk (kosong?)", doc.doc_id)
+            print(f"[!] Warning: Dokumen '{doc_id}' menghasilkan 0 chunk. Panjang teks: {len(text)}")
             continue
+
         emb_texts = [embedding_text(c, title) for c in chunks]
         n_tok = embedder.count_tokens(emb_texts, as_passage=True)
-        meta = dict(doc.meta)
-        meta.setdefault("doc_id", doc.doc_id)
-        meta.setdefault("file_sumber", doc.source_file)
-        prepared = prepare_chunks(meta, chunks, n_tok, embedder.max_seq_length)
-        stats = upsert_document(collection, embedder, doc.doc_id, prepared)
+
+        meta_dict.setdefault("doc_id", doc_id)
+        meta_dict.setdefault("file_sumber", source_file)
+
+        prepared = prepare_chunks(meta_dict, chunks, n_tok, embedder.max_seq_length)
+        stats = upsert_document(collection, embedder, doc_id, prepared)
+
         for k in totals:
             totals[k] += stats[k]
         tokens.extend(n_tok)
         words.extend(c.word_count for c in chunks)
         n_word_split += sum(c.has_word_split for c in chunks)
 
-    totals["dihapus"] += prune_missing_documents(collection, {d.doc_id for d in docs})
+    totals["dihapus"] += prune_missing_documents(collection, keep_doc_ids)
     return IndexReport(
         collection=collection.name,
         n_docs=len(docs),

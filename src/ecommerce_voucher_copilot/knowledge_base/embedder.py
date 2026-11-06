@@ -14,7 +14,11 @@ from typing import Protocol
 
 import numpy as np
 
-from .config import EMBED_BATCH_SIZE, MODELS, ModelSpec
+# Fallback import agar aman dipanggil via pytest maupun package internal
+try:
+    from .config import EMBED_BATCH_SIZE, MODELS, ModelSpec
+except (ImportError, ValueError):
+    from config import EMBED_BATCH_SIZE, MODELS, ModelSpec
 
 logger = logging.getLogger(__name__)
 

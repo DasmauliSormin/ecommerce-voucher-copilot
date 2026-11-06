@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 
-from ecommerce_voucher_copilot.knowledge_base.config import (
+from config import (
     CONSTRAINT_CODES,
     collection_name,
 )
-from ecommerce_voucher_copilot.knowledge_base.vector_store import (
+from vector_store import (
     REQUIRED_METADATA,
     get_client,
     get_collection,

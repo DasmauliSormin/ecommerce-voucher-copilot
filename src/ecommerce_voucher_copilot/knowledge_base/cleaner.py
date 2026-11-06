@@ -1,59 +1,35 @@
+"""Fungsi pembersihan dan normalisasi teks dokumen."""
+
+from __future__ import annotations
+
 import re
 
-class KnowledgeBaseCleaner:
-    """Modul pembersihan teks (header/footer, hyphenation, spasi berlebih)."""
-
-    @staticmethod
-    def clean_text(text: str) -> str:
-        if not text:
-            return ""
-
-        # 1. Menghilangkan karakter pembatas berulang (misal: ==== atau ----)
-        text = re.sub(r"[-=]{3,}", "", text)import re
-
-class KnowledgeBaseCleaner:
-    """Modul pembersihan teks (header/footer, hyphenation, spasi berlebih)."""
-
-    @staticmethod
-    def clean_text(text: str) -> str:
-        if not text:
-            return ""
-
-        # 1. Menghilangkan karakter pembatas berulang (misal: ==== atau ----)
-        text = re.sub(r"[-=]{3,}", "", text)
-
-        # 2. Memperbaiki pemotongan kata di akhir baris (hyphenation: misal 'pen- \n jualan' -> 'penjualan')
-        text = re.sub(r"(\w+)-\s*\n\s*(\w+)", r"\1\2", text)
-
-        # 3. Menghapus header / footer halaman yang umum (misal: "Halaman 1 dari 10" atau "Page 1")
-        text = re.sub(r"(?i)halaman\s+\d+(\s+dari\s+\d+)?", "", text)
-        text = re.sub(r"(?i)page\s+\d+(\s+of\s+\d+)?", "", text)
-
-        # 4. Normalisasi newline berlebih (maksimal 2 newline berturut-turut)
-        text = re.sub(r"\n{3,}", "\n\n", text)
-
-        # 5. Normalisasi spasi horisontal ganda menjadi 1 spasi
-        text = re.sub(r"[ \t]+", " ", text)
-
-        return text.strip()
+# Fallback import agar aman dijalankan baik via package internal maupun pytest
+try:
+    from .chunker import Chunk
+except (ImportError, ValueError):
+    from chunker import Chunk
 
 
-# Fungsi pembungkus (wrapper) tingkat modul agar kompatibel dengan conftest.py dan pytest
 def clean_text(text: str) -> str:
-    """Alias fungsi clean_text langsung untuk impor dari conftest.py dan test suite."""
-    return KnowledgeBaseCleaner.clean_text(text)
+    """Membersihkan dan menormalisasi teks dokumen.
 
-        # 2. Memperbaiki pemotongan kata di akhir baris (hyphenation: misal 'pen- \n jualan' -> 'penjualan')
-        text = re.sub(r"(\w+)-\s*\n\s*(\w+)", r"\1\2", text)
+    - Menghapus karakter kontrol / non-printable.
+    - Menormalisasi spasi ganda dan tab menjadi satu spasi.
+    - Menjaga struktur baris baru (newline) agar tetap rapi.
+    """
+    if not text:
+        return ""
 
-        # 3. Menghapus header / footer halaman yang umum (misal: "Halaman 1 dari 10" atau "Page 1")
-        text = re.sub(r"(?i)halaman\s+\d+(\s+dari\s+\d+)?", "", text)
-        text = re.sub(r"(?i)page\s+\d+(\s+of\s+\d+)?", "", text)
+    # Menghapus karakter kontrol selain newline (\n) dan carriage return (\r)
+    text = re.sub(r"[\x00-\x09\x0b\x0c\x0e-\x1f\x7f-\x9f]", "", text)
 
-        # 4. Normalisasi newline berlebih (maksimal 2 newline berturut-turut)
-        text = re.sub(r"\n{3,}", "\n\n", text)
+    # Menormalisasi spasi horizontal (spasi ganda / tab) menjadi satu spasi
+    lines = text.splitlines()
+    cleaned_lines = [re.sub(r"[ \t]+", " ", line).strip() for line in lines]
 
-        # 5. Normalisasi spasi horisontal ganda menjadi 1 spasi
-        text = re.sub(r"[ \t]+", " ", text)
+    # Menggabungkan kembali dengan menghilangkan baris kosong berturut-turut lebih dari 2
+    result = "\n".join(cleaned_lines)
+    result = re.sub(r"\n{3,}", "\n\n", result)
 
-        return text.strip()
+    return result.strip()

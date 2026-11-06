@@ -5,7 +5,7 @@ from __future__ import annotations
 import pytest
 from _kb_samples import DOC_STACKING
 
-from ecommerce_voucher_copilot.knowledge_base.chunker import (
+from chunker import (
     _paragraph_units,
     chunk_document,
     chunk_section,

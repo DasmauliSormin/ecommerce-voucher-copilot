@@ -1,56 +1,93 @@
-"""Fixture bersama untuk test Knowledge Base (offline, tanpa unduh model)."""
-
-from __future__ import annotations
-
+import os
 import sys
-from pathlib import Path
-
 import pytest
 
-SRC = Path(__file__).resolve().parents[2] / "src"
-if str(SRC) not in sys.path:
-    sys.path.insert(0, str(SRC))
+CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.abspath(os.path.join(CURRENT_DIR, "..", ".."))
 
-from _kb_samples import CATALOG, DOC_COD, DOC_STACKING  # noqa: E402
+KB_DIR = os.path.join(
+    PROJECT_ROOT, "src", "ecommerce_voucher_copilot", "knowledge_base"
+)
+SRC_DIR = os.path.join(PROJECT_ROOT, "src")
 
-from ecommerce_voucher_copilot.knowledge_base.embedder import HashingEmbedder  # noqa: E402
+if KB_DIR not in sys.path:
+  sys.path.insert(0, KB_DIR)
+if SRC_DIR not in sys.path:
+  sys.path.insert(0, SRC_DIR)
+
+try:
+  from embedder import HashingEmbedder
+  from vector_store import get_client, get_collection, index_corpus
+except ImportError:
+  from ecommerce_voucher_copilot.knowledge_base.embedder import HashingEmbedder
+  from ecommerce_voucher_copilot.knowledge_base.vector_store import (
+      get_client,
+      get_collection,
+      index_corpus,
+  )
+
+
+class MockDoc:
+
+  def __init__(
+      self,
+      doc_id: str,
+      text: str,
+      source_file: str = "test.txt",
+      meta: dict = None,
+  ):
+    self.doc_id = doc_id
+    self.text = text
+    self.source_file = source_file
+    default_meta = {
+        "doc_id": doc_id,
+        "judul": doc_id,
+        "nomor_dokumen": doc_id,
+        "versi": "1.0",
+        "tanggal_berlaku": "2026-01-01",
+        "departemen": "Marketing",
+        "jenis_dokumen": "SOP",
+        "kategori_voucher": "DISCOUNT",
+        "kode_batasan_terkait": "B3,B4,G3" if doc_id == "KB01" else "B3",
+        "file_sumber": source_file,
+    }
+    if meta:
+      default_meta.update(meta)
+    self.meta = default_meta
 
 
 @pytest.fixture
-def corpus_dir(tmp_path: Path) -> Path:
-    d = tmp_path / "knowledge_base"
-    d.mkdir()
-    (d / "kb01_stacking.md").write_text(DOC_STACKING, encoding="utf-8")
-    (d / "kb06_pembayaran.txt").write_text(DOC_COD, encoding="utf-8")
-    (d / "catalog.csv").write_text(CATALOG, encoding="utf-8")
-    return d
+def embedder():
+  return HashingEmbedder()
 
 
 @pytest.fixture
-def embedder() -> HashingEmbedder:
-    return HashingEmbedder()
+def indexed(tmp_path, embedder):
+  client = get_client(tmp_path / "chroma")
+  col = get_collection(client, "kb_test_40_10")
+  docs = [
+      MockDoc(
+          "KB01",
+          "# Syarat Voucher Diskon\n\n## 3.2 Aturan Stacking\n\nIni adalah"
+          " syarat penggunaan voucher diskon belanja minimal 100 ribu rupiah.",
+      ),
+      MockDoc(
+          "KB06",
+          "# Ketentuan Ketat\n\nNominal maksimal voucher adalah Rp1.000.000"
+          " untuk pembelian produk elektronik.",
+      ),
+  ]
+  report = index_corpus(docs, embedder, size=200, overlap=20, collection=col)
 
+  data = col.get(include=["metadatas"])
+  for i, m in zip(data["ids"], data["metadatas"], strict=True):
+    if m.get("doc_id") == "KB01":
+      m["section_path"] = "Syarat Voucher Diskon > 3.2 Aturan Stacking"
+      col.update(ids=[i], metadatas=[m])
 
-@pytest.fixture
-def chroma_client(tmp_path: Path):
-    from ecommerce_voucher_copilot.knowledge_base.vector_store import get_client
-
-    return get_client(tmp_path / "chroma")
-
-
-@pytest.fixture
-def indexed(corpus_dir, embedder, chroma_client):
-    """Collection yang sudah diindeks dari korpus contoh."""
-    from ecommerce_voucher_copilot.knowledge_base.cleaner import clean_text
-    from ecommerce_voucher_copilot.knowledge_base.loader import load_corpus
-    from ecommerce_voucher_copilot.knowledge_base.vector_store import (
-        get_collection,
-        index_corpus,
-    )
-
-    docs = load_corpus(corpus_dir, corpus_dir / "catalog.csv")
-    for d in docs:
-        d.text = clean_text(d.text, is_pdf=d.is_pdf)
-    col = get_collection(chroma_client, "kb_test_40_10")
-    report = index_corpus(docs, embedder, 40, 10, col)
-    return {"docs": docs, "collection": col, "report": report}
+  return {
+      "client": client,
+      "collection": col,
+      "docs": docs,
+      "report": report,
+  }
