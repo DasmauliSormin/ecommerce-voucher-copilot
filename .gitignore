@@ -8,3 +8,7 @@ wheels/
 
 # Virtual environments
 .venv
+
+vector_store/
+chroma_db/
+Data/cleaned/
