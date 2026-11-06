@@ -1,0 +1,13 @@
+doc_id,filename,title,category
+SOP_01,SOP_01_Syarat_Voucher_Platform.txt,Syarat dan Ketentuan Voucher Diskon Platform,Keuangan & Promo
+SOP_02,SOP_02_Subsidi_Gratis_Ongkir.txt,Ketentuan Skema Subsidi Gratis Ongkos Kirim,Logistik & Ongkir
+SOP_03,SOP_03_Mekanisme_Cashback.txt,Tata Cara Penerbitan dan Pencairan Cashback Koin,Keuangan & Koin
+SOP_04,SOP_04_Integrasi_Pembayaran.txt,Integrasi Metode Pembayaran dan Promo Bank,Pembayaran
+SOP_05,SOP_05_Voucher_Merchant.txt,Regulasi Voucher Diskon oleh Penjual,Manajemen Merchant
+SOP_06,SOP_06_Pengembalian_Dana.txt,Prosedur Pengembalian Dana dan Retur,Customer Service
+SOP_07,SOP_07_Deteksi_Kecurangan.txt,Sistem Deteksi Fraud dan Penyalahgunaan Promo,Keamanan Siber
+SOP_08,SOP_08_Anggaran_Subsidi.txt,Batas Maksimum Anggaran Subsidi Platform,Manajemen Keuangan
+SOP_09,SOP_09_Segmen_Pengguna.txt,Klasifikasi Segmen Pengguna dan Hak Akses Promo,CRM & Pemasaran
+SOP_10,SOP_10_Flash_Sale.txt,Aturan Eksklusivitas Promo Event Flash Sale,Event & Campaign
+SOP_11,SOP_11_Kendala_Teknis.txt,Penanganan Kendala Teknis dan Gagal Checkout,Operasional
+SOP_12,SOP_12_Evaluasi_Kinerja_Promo.txt,Evaluasi Efisiensi dan Performance Benchmark,Analisis Bisnis
